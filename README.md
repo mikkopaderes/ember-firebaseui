@@ -1,6 +1,6 @@
 # ember-firebaseui
 
-This README outlines the details of collaborating on this Ember addon.
+Ember implementation of [FirebaseUI for Web](https://github.com/firebase/firebaseui-web)
 
 ## Installation
 

@@ -1,17 +1,17 @@
 {
   "name": "ember-firebaseui",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Ember implementation of FirebaseUI for Web",
   "keywords": [
     "ember-addon"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Mikko Paderes",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/rmmmp/ember-firebaseui",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
@@ -21,6 +21,8 @@
     "ember-cli-babel": "^6.3.0"
   },
   "devDependencies": {
+    "eslint-config-google": "~0.8.1",
+
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~2.14.0",
