@@ -7,7 +7,7 @@ import firebase from 'firebase';
 /**
  * @class FirebaseUi
  * @namespace Service
- * @extends Ember.Service
+ * @extends Service
  */
 export default Service.extend({
   /**
@@ -15,7 +15,7 @@ export default Service.extend({
    * @default
    * @readonly
    */
-  firebaseApp: inject(),
+  firebase: inject(),
 
   /**
    * @type {FirebaseUi}
@@ -39,11 +39,12 @@ export default Service.extend({
    * @param {Object} uiConfig
    */
   startAuthUi(uiConfig) {
-    const auth = this.get('firebaseApp').auth();
+    const auth = this.get('firebase').auth();
     let ui = this.get('ui');
 
     if (!ui) {
       ui = new FirebaseUi.auth.AuthUI(auth);
+
       this.set('ui', ui);
     }
 

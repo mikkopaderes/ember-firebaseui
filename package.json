@@ -1,6 +1,6 @@
 {
   "name": "ember-firebaseui",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Ember implementation of FirebaseUI for Web",
   "keywords": [
     "ember-addon"
@@ -18,12 +18,13 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-node-assets": "^0.2.2",
-    "emberfire": "^2.0.8",
-    "fastboot-transform": "^0.1.2",
-    "firebaseui": "^1.0.1",
     "ember-cli-babel": "^6.6.0",
-    "ember-cli-htmlbars": "^2.0.1"
+    "ember-cli-htmlbars": "^2.0.1",
+    "ember-cli-node-assets": "^0.2.2",
+    "ember-firebase-service": "^4.0.0",
+    "fastboot-transform": "^0.1.2",
+    "firebaseui": "^2.4.1",
+    "torii": "^0.9.6"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
