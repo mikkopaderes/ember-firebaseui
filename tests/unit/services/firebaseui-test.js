@@ -3,7 +3,7 @@ import { moduleFor, test } from 'ember-qunit';
 import sinon from 'sinon';
 
 moduleFor('service:firebaseui', 'Unit | Service | firebaseui', {
-  needs: ['service:firebase-app'],
+  needs: ['service:firebase'],
 });
 
 test('should start auth UI', function(assert) {
@@ -13,7 +13,7 @@ test('should start auth UI', function(assert) {
   const stub = sinon.stub();
 
   const service = this.subject({
-    firebaseApp: { auth: sinon.stub() },
+    firebase: { auth: sinon.stub() },
     ui: { start: stub },
   });
 
@@ -33,7 +33,7 @@ test('should reset auth UI', function(assert) {
   const stub = sinon.stub();
 
   const service = this.subject({
-    firebaseApp: { auth: sinon.stub() },
+    firebase: { auth: sinon.stub() },
     ui: { reset: stub },
   });
 
