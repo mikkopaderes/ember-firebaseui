@@ -43,7 +43,11 @@ export default Service.extend({
     let ui = this.get('ui');
 
     if (!ui) {
-      ui = new FirebaseUi.auth.AuthUI(auth);
+      ui = FirebaseUi.auth.AuthUI.getInstance();
+
+      if (!ui) {
+        ui = new FirebaseUi.auth.AuthUI(auth);
+      }
 
       this.set('ui', ui);
     }
