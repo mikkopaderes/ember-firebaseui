@@ -10,24 +10,23 @@ import layout from '../templates/components/firebaseui-auth';
  * @extends Ember.Component
  */
 export default Component.extend({
+  /**
+   * @override
+   */
   layout,
 
   /**
    * @type {Ember.Service}
-   * @default
-   * @readOnly
    */
   firebaseui: inject(),
 
   /**
-   * @type {string}
-   * @default
-   * @readonly
+   * @override
    */
   elementId: 'firebaseui-auth-container',
 
   /**
-   * Component hook
+   * @override
    */
   didInsertElement(...args) {
     this._super(args);
@@ -38,7 +37,7 @@ export default Component.extend({
   },
 
   /**
-   * Component hook
+   * @override
    */
   willDestroyElement(...args) {
     this._super(args);

@@ -6,13 +6,11 @@ import RSVP from 'rsvp';
 /**
  * @class FirebaseUi
  * @namespace ToriiAdapters
- * @extends EmberObject
+ * @extends Ember.Object
  */
 export default EmberObject.extend({
   /**
-   * @type {Service}
-   * @default
-   * @readonly
+   * @type {Ember.Service}
    */
   firebase: inject(),
 

@@ -7,7 +7,7 @@ import firebase from 'firebase';
 /**
  * @class FirebaseUi
  * @namespace Service
- * @extends Service
+ * @extends Ember.Service
  */
 export default Service.extend({
   /**
@@ -16,12 +16,6 @@ export default Service.extend({
    * @readonly
    */
   firebase: inject(),
-
-  /**
-   * @type {FirebaseUi}
-   * @readonly
-   */
-  ui: null,
 
   /**
    * Service hook
