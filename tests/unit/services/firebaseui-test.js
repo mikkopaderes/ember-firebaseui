@@ -1,45 +1,48 @@
-import { moduleFor, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
 import sinon from 'sinon';
 
-moduleFor('service:firebaseui', 'Unit | Service | firebaseui', {
-  needs: ['service:firebase'],
-});
+module('Unit | Service | firebaseui', function(hooks) {
+  setupTest(hooks);
 
-test('should start auth UI', function(assert) {
-  assert.expect(1);
+  module('function: startAuthUi', function() {
+    test('should start auth UI', function(assert) {
+      assert.expect(1);
 
-  // Arrange
-  const stub = sinon.stub();
+      // Arrange
+      const stub = sinon.stub();
+      const service = this.owner.lookup('service:firebaseui');
 
-  const service = this.subject({
-    firebase: { auth: sinon.stub() },
-    ui: { start: stub },
+      service.set('firebase', { auth: sinon.stub() });
+      service.set('ui', { start: stub });
+
+      // Act
+      service.startAuthUi({ foo: 'bar' });
+
+      // Assert
+      assert.ok(stub.calledWithExactly('#firebaseui-auth-container', {
+        foo: 'bar',
+      }));
+    });
   });
 
-  // Act
-  service.startAuthUi({ foo: 'bar' });
+  module('function: resetAuthUi', function() {
+    test('should reset auth UI', function(assert) {
+      assert.expect(1);
 
-  // Assert
-  assert.ok(
-    stub.calledWithExactly('#firebaseui-auth-container', { foo: 'bar' }),
-  );
-});
+      // Arrange
+      const stub = sinon.stub();
+      const service = this.owner.lookup('service:firebaseui');
 
-test('should reset auth UI', function(assert) {
-  assert.expect(1);
+      service.set('firebase', { auth: sinon.stub() });
+      service.set('ui', { reset: stub });
 
-  // Arrange
-  const stub = sinon.stub();
+      // Act
+      service.resetAuthUi();
 
-  const service = this.subject({
-    firebase: { auth: sinon.stub() },
-    ui: { reset: stub },
+      // Assert
+      assert.ok(stub.calledOnce);
+    });
   });
-
-  // Act
-  service.resetAuthUi();
-
-  // Assert
-  assert.ok(stub.calledOnce);
 });

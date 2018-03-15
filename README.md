@@ -1,18 +1,21 @@
-# ember-firebaseui
+ember-firebaseui
+==============================================================================
 
-Ember implementation of [FirebaseUI for Web](https://github.com/firebase/firebaseui-web)
+Ember implementation of FirebaseUI for Web
 
-## Installation
+Installation
+------------------------------------------------------------------------------
 
-```bash
+```
 ember install ember-firebaseui
 ```
 
-## Configuration
+### Configuration
 
 This addon is dependent on [`ember-firebase-service`](https://github.com/rmmmp/ember-firebase-service). You'll need to configure your Firebase as explained [here](https://github.com/rmmmp/ember-firebase-service#configuration).
 
-## Usage
+Usage
+------------------------------------------------------------------------------
 
 ### Auth
 
@@ -41,9 +44,9 @@ let ENV = {
 }
 ```
 
-#### Implementation
+#### `{{firebaseui-auth}}`
 
-A component is provided for rendering FirebaseUI Auth. Here's how:
+`{{firebaseui-auth}}` component is provided for rendering FirebaseUI Auth. Here's how:
 
 First setup your `uiConfig` which is exactly the same with [FirebaseUI Auth](https://github.com/firebase/firebaseui-web).
 
@@ -56,20 +59,17 @@ import firebaseui from 'firebaseui';
 
 export default Component.extend({
   session: inject(),
-  uiConfig: null,
 
   init(...args) {
-    this._super(args);
+    this._super(...args);
 
     const uiConfig = {
       credentialHelper: firebaseui.auth.CredentialHelper.NONE,
-
       callbacks: {
         signInSuccess: () => {
           this.get('session').fetch();
         },
       },
-
       signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -84,7 +84,7 @@ export default Component.extend({
 });
 ```
 
-Then pass that `uiConfig` into the `firebaseui-auth` component.
+Then pass that `uiConfig` into the `{{firebaseui-auth}}` component.
 
 ```javascript
 {{firebaseui-auth uiConfig=uiConfig}}
@@ -101,30 +101,38 @@ export default Route.extend({
 
   beforeModel() {
     return this.get('session').fetch().catch(() => {});
-  },
+  }
 });
 ```
-## Developing
+
+Contributing
+------------------------------------------------------------------------------
 
 ### Installation
 
-* `git clone <repository-url>` this repository
+* `git clone <repository-url>`
 * `cd ember-firebaseui`
 * `npm install`
 
-### Running
+### Linting
+
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
+
+### Running tests
+
+* `ember test` – Runs the test suite on the current Ember version
+* `ember test --server` – Runs the test suite in "watch mode"
+* `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
+
+### Running the dummy application
 
 * `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-### Running Tests
-
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-### Building
-
-* `ember build`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).

@@ -1,31 +1,31 @@
-import { moduleForComponent, test } from 'ember-qunit';
-import Service from 'ember-service';
+import { module, test } from 'qunit';
+import { render } from '@ember/test-helpers';
+import { setupRenderingTest } from 'ember-qunit';
+import Service from '@ember/service';
 import hbs from 'htmlbars-inline-precompile';
 
 import sinon from 'sinon';
 
-moduleForComponent('firebaseui-auth', 'Integration | Component | firebaseui auth', {
-  integration: true,
-});
+module('Integration | Component | firebaseui-auth', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('should render firebaseui auth widget', function(assert) {
-  assert.expect(1);
+  test('should render firebaseui auth widget', async function(assert) {
+    assert.expect(1);
 
-  // Arrange
-  const startAuthUiStub = sinon.stub();
+    // Arrange
+    const startAuthUiStub = sinon.stub();
+    const firebaseuiStub = Service.extend({
+      startAuthUi: startAuthUiStub,
+      resetAuthUi: sinon.stub(),
+    });
 
-  const firebaseuiStub = Service.extend({
-    startAuthUi: startAuthUiStub,
-    resetAuthUi: sinon.stub(),
+    this.owner.register('service:firebaseui', firebaseuiStub);
+    this.set('uiConfig', { foo: 'bar' });
+
+    // Act
+    await render(hbs`{{firebaseui-auth uiConfig=uiConfig}}`);
+
+    // Assert
+    assert.ok(startAuthUiStub.calledWithExactly(this.get('uiConfig')));
   });
-
-  this.register('service:firebaseui', firebaseuiStub);
-  this.inject.service('firebaseui', { as: 'firebaseui' });
-  this.set('uiConfig', { foo: 'bar' });
-
-  // Act
-  this.render(hbs`{{firebaseui-auth uiConfig=uiConfig}}`);
-
-  // Assert
-  assert.ok(startAuthUiStub.calledWithExactly(this.get('uiConfig')));
 });
