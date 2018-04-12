@@ -12,7 +12,25 @@ ember install ember-firebaseui
 
 ### Configuration
 
-This addon is dependent on [`ember-firebase-service`](https://github.com/rmmmp/ember-firebase-service). You'll need to configure your Firebase as explained [here](https://github.com/rmmmp/ember-firebase-service#configuration).
+Add a `firebase` and `torii` property in your `config/environment.js`.
+
+```javascript
+let ENV = {
+  ...
+
+  firebase: {
+    apiKey: '<api_key>',
+    authDomain: '<auth_domain>',
+    databaseURL: '<database_url>',
+    projectId: '<project_id>',
+    storageBucket: '<storage_bucket>',
+    messagingSenderId: '<messaging_sender_id>'
+  },
+  torii: { sessionServiceName: 'session' },
+
+  ...
+}
+```
 
 Usage
 ------------------------------------------------------------------------------
@@ -30,18 +48,6 @@ import ToriiFirebaseUiAdapter from 'ember-firebaseui/torii-adapters/firebaseui';
 
 export default ToriiFirebaseUiAdapter.extend({
 });
-```
-
-Then you'll need to add some Torii configurations in your `config/environment.js`.
-
-```javascript
-let ENV = {
-  ...
-
-  torii: { sessionServiceName: 'session' },
-
-  ...
-}
 ```
 
 #### `{{firebaseui-auth}}`
