@@ -7,6 +7,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
+npm install firebase@5.x --save-dev
 ember install ember-firebaseui
 ```
 
@@ -72,7 +73,7 @@ export default Component.extend({
     const uiConfig = {
       credentialHelper: firebaseui.auth.CredentialHelper.NONE,
       callbacks: {
-        signInSuccess: () => {
+        signInSuccessWithAuthResult: () => {
           this.get('session').fetch();
         },
       },
