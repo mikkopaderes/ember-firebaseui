@@ -73,7 +73,7 @@ export default Component.extend({
     const uiConfig = {
       credentialHelper: firebaseui.auth.CredentialHelper.NONE,
       callbacks: {
-        signInSuccess: () => {
+        signInSuccessWithAuthResult: () => {
           this.get('session').fetch();
         },
       },
